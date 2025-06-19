@@ -1,0 +1,64 @@
+import SectionTitle from "../../../components/common/SectionTitle";
+
+const CompanyState = () => {
+  const data = [
+    {
+      id: 1,
+      title: "Projects Delivered",
+      value: "+120",
+    },
+    {
+      id: 2,
+      title: "Years of Experience",
+      value: "+15",
+    },
+    {
+      id: 3,
+      title: "Clients Served",
+      value: "+85",
+    },
+    {
+      id: 4,
+      title: "Clients Satisfaction",
+      value: "98%",
+    },
+  ];
+
+  return (
+    <section className="container sectionPadding">
+      <SectionTitle title="Proven Results, Trusted by Many" />
+
+      <div className="hidden xl:flex flex-wrap gap-4 justify-center">
+        {data.map((item) => (
+          <div
+            key={item.id}
+            className="group flex flex-col gap-4 justify-end h-[400px] bg-black/30 p-6 rounded-lg shadow-lg hover:bg-dark-red 
+            transition-all duration-300"
+          >
+            <span className="text-4xl group-hover:text-7xl duration-300">
+              {item.value}
+            </span>
+            <p className="text-2xl group-hover:text-4xl duration-300">
+              {item.title}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="xl:hidden grid grid-cols-2 md:grid-cols-4 gap-4">
+        {data.map((item) => (
+          <div
+            key={item.id}
+            className="flex flex-col gap-4 bg-black/30 p-6 rounded-lg shadow-lg 
+              hover:bg-dark-red hover:scale-105 transition-all duration-300"
+          >
+            <span className="text-4xl">{item.value}</span>
+            <p className="text-2xl">{item.title}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default CompanyState;
