@@ -4,9 +4,26 @@ import {
   FaLinkedinIn,
   FaBehance,
   FaWhatsapp,
+  FaFacebook,
 } from "react-icons/fa";
+import Loading from "../Loading/Loading";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSetting } from "../../../store/setting/settingAction";
+import { FaF } from "react-icons/fa6";
 
 const Footer = () => {
+  const { setting, loading } = useSelector((state) => state.setting);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSetting());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <footer className="bg-dark-red sectionPadding">
       <div className="container bg-dark-red grid lg:grid-cols-3 gap-10">
@@ -23,27 +40,30 @@ const Footer = () => {
           <h3 className="font-bold text-2xl">Explore</h3>
           <ul className="space-y-1">
             <li>
-              <a href="#!" className="hover:text-gray-400 transition">
+              <a href="#About" className="hover:text-gray-400 transition">
                 About Us
               </a>
             </li>
             <li>
-              <a href="#!" className="hover:text-gray-400 transition">
+              <a href="#Services" className="hover:text-gray-400 transition">
                 Services
               </a>
             </li>
             <li>
-              <a href="#!" className="hover:text-gray-400 transition">
+              <a href="#Projects" className="hover:text-gray-400 transition">
                 Projects
               </a>
             </li>
             <li>
-              <a href="#!" className="hover:text-gray-400 transition">
+              <a
+                href="#SuccessStories"
+                className="hover:text-gray-400 transition"
+              >
                 Success Stories
               </a>
             </li>
             <li>
-              <a href="#!" className="hover:text-gray-400 transition">
+              <a href="#Careers" className="hover:text-gray-400 transition">
                 Careers
               </a>
             </li>
@@ -58,11 +78,11 @@ const Footer = () => {
               href="mailto:hello@youragency.com"
               className="hover:text-gray-400 transition"
             >
-              hello@youragency.com
+              {setting?.email}
             </a>
           </p>
-          <p>Phone: +20 123 456 789</p>
-          <p>Location: Cairo, Egypt</p>
+          <p>Phone: {setting?.phone}</p>
+          <p>Location: {setting?.address}</p>
 
           <button className="mainBtn light">15-Min Free Consultation</button>
         </div>
@@ -73,27 +93,31 @@ const Footer = () => {
           © 2025 Life Media Production. All rights reserved.
         </p>
 
-        <div className="flex justify-center  gap-4">
+        <div className="flex justify-center flex-wrap gap-4">
           <a
-            href="#!"
+            href={setting?.whatsapp}
+            target="_blank"
             className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
           >
             <FaWhatsapp />
           </a>
           <a
-            href="#!"
+            href={setting?.instagram}
+            target="_blank"
             className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
           >
             <FaInstagram />
           </a>
           <a
-            href="#!"
+            href={setting?.facebook}
+            target="_blank"
             className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
           >
-            <FaLinkedinIn />
+            <FaFacebook />
           </a>
           <a
-            href="#!"
+            href={setting?.behance}
+            target="_blank"
             className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
           >
             <FaBehance />

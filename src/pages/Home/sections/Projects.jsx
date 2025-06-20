@@ -1,43 +1,33 @@
+import { useDispatch, useSelector } from "react-redux";
 import SectionTitle from "../../../components/common/SectionTitle";
-import projectImg from "../../../assets/images/project-img.jpg";
 import { GoArrowUpRight } from "react-icons/go";
+import { useEffect } from "react";
+import { getProjects } from "../../../store/projects/projectsAction";
+import Loading from "../../../components/layout/Loading/Loading";
 
 const Projects = () => {
-  const projectData = [
-    {
-      id: 1,
-      title: "Fork & Flame",
-      description:
-        "A complete rebranding of their brand and website to match their upscale dining experience.",
-      imgSrc: projectImg,
-    },
-    {
-      id: 2,
-      title: "Fork & Flame",
-      description:
-        "A complete rebranding of their brand and website to match their upscale dining experience.",
-      imgSrc: projectImg,
-    },
-    {
-      id: 3,
-      title: "Fork & Flame",
-      description:
-        "A complete rebranding of their brand and website to match their upscale dining experience.",
-      imgSrc: projectImg,
-    },
-  ];
+  const { projects, loading } = useSelector((state) => state.projects);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProjects());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section id="Projects" className="container sectionPadding">
       <SectionTitle title="Where Vision Meets Execution" />
 
       <div className="space-y-4">
-        {projectData.map((project) => (
+        {projects?.map((project) => (
           <div
             key={project.id}
             className="group relative h-[300px] lg:h-[540px] border-6 border-light-gray rounded-4xl overflow-hidden"
           >
             <img
-              src={project.imgSrc}
+              src={project.image_url}
               alt={project.title}
               className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-500"
             />
@@ -50,7 +40,9 @@ const Projects = () => {
                 <h3 className="text-3xl font-bold line-clamp-1">
                   {project.title}
                 </h3>
-                <p className="text-lg line-clamp-2">{project.description}</p>
+                <p className="text-lg line-clamp-2">
+                  {project.short_description}
+                </p>
               </div>
               <button className="mainBtn transparent">
                 See Project <GoArrowUpRight />

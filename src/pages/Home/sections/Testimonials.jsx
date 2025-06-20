@@ -1,46 +1,24 @@
 import SectionTitle from "../../../components/common/SectionTitle";
 import noiseImg from "../../../assets/images/noise.png";
-import inDriveImg from "../../../assets/images/in-drive.png";
-import manImg from "../../../assets/images/man.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getTestimonials } from "../../../store/testimonials/testimonialsAction";
+import Loading from "../../../components/layout/Loading/Loading";
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      id: 1,
-      text: "Working with the team felt like having our own internal creative department. Everything from the branding to the social media was done with precision and heart.",
-      name: "Dr. Mohamed Saqr",
-      position: "Founder of Saqr Clinics",
-      image: manImg,
-      brandImg: inDriveImg,
-    },
-    {
-      id: 2,
-      text: "Working with the team felt like having our own internal creative department. Everything from the branding to the social media was done with precision and heart.",
-      name: "Dr. Mohamed Saqr",
-      position: "Founder of Saqr Clinics",
-      image: manImg,
-      brandImg: inDriveImg,
-    },
-    {
-      id: 3,
-      text: "Working with the team felt like having our own internal creative department. Everything from the branding to the social media was done with precision and heart.",
-      name: "Dr. Mohamed Saqr",
-      position: "Founder of Saqr Clinics",
-      image: manImg,
-      brandImg: inDriveImg,
-    },
-    {
-      id: 4,
-      text: "Working with the team felt like having our own internal creative department. Everything from the branding to the social media was done with precision and heart.",
-      name: "Dr. Mohamed Saqr",
-      position: "Founder of Saqr Clinics",
-      image: manImg,
-      brandImg: inDriveImg,
-    },
-  ];
+  const { testimonials, loading } = useSelector((state) => state.testimonials);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTestimonials());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section className="sectionPadding">
       <SectionTitle title={"Client Testimonials"} />
@@ -60,7 +38,7 @@ const Testimonials = () => {
           },
         }}
       >
-        {testimonials.map((item) => (
+        {testimonials?.map((item) => (
           <SwiperSlide key={item.id} className="px-4">
             <div
               style={{ backgroundImage: `url(${noiseImg})` }}
@@ -69,14 +47,20 @@ const Testimonials = () => {
                 after:shadow-[0px_0px_100px_70px] after:shadow-red-500 after:opacity-0 
                 after:transition-all after:duration-300 hover:after:opacity-100"
             >
-              <img src={item.brandImg} alt="Brand" />
+              <div className="h-14">
+                <img
+                  src={item.logo_url}
+                  alt="Brand"
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-              <p className="text-xl">{item.text}</p>
+              <p className="text-xl line-clamp-1">{item.testimonial_text}</p>
 
               <div className="flex items-center gap-2">
                 <div className="w-12 h-12 overflow-hidden rounded-full">
                   <img
-                    src={item.image}
+                    src={item.image_url}
                     className="w-full h-full object-cover"
                     alt={item.name}
                   />

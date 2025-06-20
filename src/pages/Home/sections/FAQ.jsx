@@ -1,39 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/common/SectionTitle";
 import { FaPlus, FaMinus } from "react-icons/fa";
-
-const faqData = [
-  {
-    id: 1,
-    question: "What services do you offer?",
-    answer:
-      "We offer full branding, web design, social media management, content creation, and campaign strategy for businesses across multiple industries — including clinics, restaurants, conferences, and banks.",
-  },
-  {
-    id: 2,
-    question: "How long does a project take?",
-    answer:
-      "It depends on the project scope, but typically between 2 to 6 weeks.",
-  },
-  {
-    id: 3,
-    question: "Can I request revisions?",
-    answer:
-      "Yes, we include multiple revision rounds to ensure your satisfaction.",
-  },
-  {
-    id: 4,
-    question: "Do you offer ongoing support?",
-    answer:
-      "Absolutely! We offer maintenance and support packages after delivery.",
-  },
-  {
-    id: 5,
-    question: "How do I get started?",
-    answer:
-      "Just reach out to us via our contact form and we’ll guide you from there.",
-  },
-];
+import { getQuestions } from "../../../store/questions/questionsAction";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../components/layout/Loading/Loading";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -42,12 +12,23 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const { questions, loading } = useSelector((state) => state.questions);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getQuestions());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <section className="container sectionPadding">
       <SectionTitle title="Got a Question? We've Got Answers" />
 
       <div className="space-y-4">
-        {faqData.map((item, index) => (
+        {questions?.map((item, index) => (
           <div
             key={item.id}
             className="bg-light-gray rounded-xl transition-all duration-300 px-4"
@@ -72,7 +53,7 @@ const FAQ = () => {
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="text-gray-300">{item.answer}</p>
+              <p className="text-gray-300">{item.answers}</p>
             </div>
           </div>
         ))}

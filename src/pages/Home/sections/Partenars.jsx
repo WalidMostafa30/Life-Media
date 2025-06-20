@@ -1,19 +1,23 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import inDriveImg from "../../../assets/images/in-drive.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getBrands } from "../../../store/brands/brandsAction";
+import Loading from "../../../components/layout/Loading/Loading";
 
 const Partenars = () => {
-  const partenarsList = [
-    inDriveImg,
-    inDriveImg,
-    inDriveImg,
-    inDriveImg,
-    inDriveImg,
-    inDriveImg,
-    inDriveImg,
-    inDriveImg,
-  ];
+  const { brands, loading } = useSelector((state) => state.brands);
+  const dispatch = useDispatch();
+  useSelector;
+
+  useEffect(() => {
+    dispatch(getBrands());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section className="sectionPadding">
       <div className="container mb-10">
@@ -42,9 +46,9 @@ const Partenars = () => {
           },
         }}
       >
-        {partenarsList.map((item, index) => (
+        {brands?.map((item, index) => (
           <SwiperSlide key={index}>
-            <img src={item} alt={`Partner ${index + 1}`} className="mx-auto" />
+            <img src={item.logo_url} alt={item.name} className="mx-auto" />
           </SwiperSlide>
         ))}
       </Swiper>

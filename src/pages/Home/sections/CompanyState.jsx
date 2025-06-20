@@ -1,59 +1,51 @@
+import { useDispatch, useSelector } from "react-redux";
 import SectionTitle from "../../../components/common/SectionTitle";
+import { useEffect } from "react";
+import { getSetting } from "../../../store/setting/settingAction";
+import Loading from "../../../components/layout/Loading/Loading";
 
 const CompanyState = () => {
-  const data = [
-    {
-      id: 1,
-      title: "Projects Delivered",
-      value: "+120",
-    },
-    {
-      id: 2,
-      title: "Years of Experience",
-      value: "+15",
-    },
-    {
-      id: 3,
-      title: "Clients Served",
-      value: "+85",
-    },
-    {
-      id: 4,
-      title: "Clients Satisfaction",
-      value: "98%",
-    },
-  ];
 
+  const { setting, loading } = useSelector((state) => state.setting);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSetting());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section id="Careers" className="container sectionPadding">
       <SectionTitle title="Proven Results, Trusted by Many" />
 
       <div className="hidden xl:flex flex-wrap gap-4 justify-center">
-        {data.map((item) => (
+        {setting?.provenResults?.map((item, index) => (
           <div
-            key={item.id}
-            className="group flex flex-col gap-4 justify-end h-[400px] bg-black/30 p-6 rounded-lg shadow-lg hover:bg-dark-red 
-            transition-all duration-300"
+            key={index}
+            className="group flex flex-col min-w-[200px] gap-4 justify-end h-[400px] bg-black/30 p-6 rounded-lg shadow-lg 
+            hover:bg-dark-red hover:flex-grow transition-all duration-700"
           >
-            <span className="text-4xl group-hover:text-7xl duration-300">
-              {item.value}
+            <span className="text-4xl group-hover:text-7xl duration-700">
+              {item.count}
             </span>
-            <p className="text-2xl group-hover:text-4xl duration-300">
-              {item.title}
+            <p className="text-2xl group-hover:text-4xl duration-700">
+              {item.text}
             </p>
           </div>
         ))}
       </div>
 
       <div className="xl:hidden grid grid-cols-2 md:grid-cols-4 gap-4">
-        {data.map((item) => (
+        {setting?.provenResults?.map((item, index) => (
           <div
-            key={item.id}
+            key={index}
             className="flex flex-col gap-4 bg-black/30 p-6 rounded-lg shadow-lg 
-              hover:bg-dark-red hover:scale-105 transition-all duration-300"
+              hover:bg-dark-red hover:scale-105 transition-all duration-700"
           >
-            <span className="text-4xl">{item.value}</span>
-            <p className="text-2xl">{item.title}</p>
+            <span className="text-4xl">{item.count}</span>
+            <p className="text-2xl">{item.text}</p>
           </div>
         ))}
       </div>

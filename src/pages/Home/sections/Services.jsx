@@ -1,12 +1,22 @@
 import SectionTitle from "../../../components/common/SectionTitle";
-import servicesImg1 from "../../../assets/images/solutions-img1.jpg";
-import servicesImg2 from "../../../assets/images/solutions-img2.jpg";
-import servicesImg3 from "../../../assets/images/solutions-img3.jpg";
-import servicesImg4 from "../../../assets/images/solutions-img4.jpg";
-import servicesImg5 from "../../../assets/images/solutions-img5.jpg";
-import servicesImg6 from "../../../assets/images/solutions-img6.jpg";
+import { useEffect } from "react";
+import { getSolutions } from "../../../store/solutions/solutionsAction";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../components/layout/Loading/Loading";
+import { GoArrowUpRight } from "react-icons/go";
 
 const Services = () => {
+  const { solutions, loading } = useSelector((state) => state.solutions);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSolutions());
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <section id="Services" className="container sectionPadding">
       <SectionTitle title={"Solutions We Offer"} />
@@ -15,7 +25,7 @@ const Services = () => {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="group relative rounded-4xl overflow-hidden sm:col-span-2">
             <img
-              src={servicesImg1}
+              src={solutions[0]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
 
@@ -31,7 +41,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden">
             <img
-              src={servicesImg2}
+              src={solutions[1]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
 
@@ -47,7 +57,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden">
             <img
-              src={servicesImg3}
+              src={solutions[2]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
 
@@ -66,7 +76,7 @@ const Services = () => {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="group relative rounded-4xl overflow-hidden">
             <img
-              src={servicesImg6}
+              src={solutions[3]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
 
@@ -82,7 +92,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden">
             <img
-              src={servicesImg5}
+              src={solutions[4]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
 
@@ -98,7 +108,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden sm:col-span-2">
             <img
-              src={servicesImg4}
+              src={solutions[5]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
 
@@ -114,6 +124,13 @@ const Services = () => {
           </div>
         </div>
       </div>
+
+      <a
+        href="#"
+        className="flex items-center gap-1 w-max mx-auto mt-6 font-semibold text-light-red hover:underline"
+      >
+        Learn More <GoArrowUpRight className="text-3xl" />
+      </a>
     </section>
   );
 };

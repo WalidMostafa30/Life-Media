@@ -8,11 +8,13 @@ import SuccessStory from "./sections/SuccessStory/SuccessStory";
 import FAQ from "./sections/FAQ";
 import CTA from "../../components/common/CTA";
 import ContactUS from "./sections/ContactUS";
+import Hero from "./sections/Hero/Hero";
 
 const Home = () => {
   return (
     <section>
-      <HeroSection />
+      {/* <HeroSection /> */}
+      <Hero />
       <CompanyState />
       <Partenars />
       <CTA
