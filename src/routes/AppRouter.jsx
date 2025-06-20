@@ -4,7 +4,6 @@ import App from "../App";
 import Loading from "../components/layout/Loading/Loading";
 
 const Home = React.lazy(() => import("../pages/Home/Home"));
-const ErrorPage = React.lazy(() => import("../pages/ErrorPage/ErrorPage"));
 
 const router = createBrowserRouter([
   {
@@ -12,7 +11,6 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: "*", element: <ErrorPage /> },
     ],
   },
 ]);
