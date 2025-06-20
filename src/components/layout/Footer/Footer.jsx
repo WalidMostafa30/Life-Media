@@ -1,79 +1,114 @@
-import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
-import { RiFileUserLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import logoImg from "../../../assets/images/logo-white.png";
+import {
+  FaInstagram,
+  FaLinkedinIn,
+  FaBehance,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-bg-clr py-8 shadow-[0_-1px_10px_var(--main-clr)]">
-      <div className="myContainer flex flex-col items-center justify-center gap-5">
-        <h2 className="text-5xl font-bold">Blogify</h2>
+    <footer className="bg-dark-red sectionPadding">
+      <div className="container bg-dark-red grid lg:grid-cols-3 gap-10">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <img src={logoImg} alt="Logo" />
+          <p>
+            A creative agency helping brands grow through design, strategy, and
+            impact.
+          </p>
+        </div>
 
-        <nav className="flex items-center justify-center gap-4">
-          <Link
-            to={"/"}
-            className="text-2xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            Home
-          </Link>
-          <Link
-            to={"/posts"}
-            className="text-2xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            Posts
-          </Link>
-          <Link
-            to={"/about"}
-            className="text-2xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            About
-          </Link>
-        </nav>
+        {/* Links */}
+        <div className="flex flex-col items-center gap-4 text-center">
+          <h3 className="font-bold text-2xl">Explore</h3>
+          <ul className="space-y-1">
+            <li>
+              <a href="#!" className="hover:text-gray-400 transition">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#!" className="hover:text-gray-400 transition">
+                Services
+              </a>
+            </li>
+            <li>
+              <a href="#!" className="hover:text-gray-400 transition">
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="#!" className="hover:text-gray-400 transition">
+                Success Stories
+              </a>
+            </li>
+            <li>
+              <a href="#!" className="hover:text-gray-400 transition">
+                Careers
+              </a>
+            </li>
+          </ul>
+        </div>
 
-        <ul className="flex items-center gap-4">
-          <a
-            href="https://www.facebook.com/share/1ASJWPGPiP/?mibextid=qi2Omg"
-            target="_blank"
-            className="text-3xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href="https://www.instagram.com/walid_mostafa30?igsh=MWNnNmZucDE4bjc1MA=="
-            target="_blank"
-            className="text-3xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            <AiFillInstagram />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/walid-m0stafa-"
-            target="_blank"
-            className="text-3xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://github.com/WalidMostafa30"
-            target="_blank"
-            className="text-3xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://walid-portfolio-2001.netlify.app/"
-            target="_blank"
-            className="text-3xl hover:text-main-clr hover:scale-110 duration-200"
-          >
-            <RiFileUserLine />
-          </a>
-        </ul>
+        <div className="flex flex-col items-center gap-4 text-center">
+          <h3 className="font-bold text-2xl">Let's Connect</h3>
+          <p>
+            Email:{" "}
+            <a
+              href="mailto:hello@youragency.com"
+              className="hover:text-gray-400 transition"
+            >
+              hello@youragency.com
+            </a>
+          </p>
+          <p>Phone: +20 123 456 789</p>
+          <p>Location: Cairo, Egypt</p>
 
-        <p>
-          Made by -{""}
-          <span className="text-xl text-main-clr font-semibold">
-            Walid Mostafa
-          </span>
+          <button className="mainBtn light">15-Min Free Consultation</button>
+        </div>
+      </div>
+
+      <div className="container bg-dark-red grid lg:grid-cols-3 gap-4 mt-8">
+        <p className="text-center">
+          © 2025 Life Media Production. All rights reserved.
         </p>
+
+        <div className="flex justify-center  gap-4">
+          <a
+            href="#!"
+            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+          >
+            <FaWhatsapp />
+          </a>
+          <a
+            href="#!"
+            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="#!"
+            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+          >
+            <FaLinkedinIn />
+          </a>
+          <a
+            href="#!"
+            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+          >
+            <FaBehance />
+          </a>
+        </div>
+
+        <div className="text-center">
+          <a href="#!" className="hover:text-gray-400 transition">
+            Teams & Conditions
+          </a>{" "}
+          |{" "}
+          <a href="#!" className="hover:text-gray-400 transition">
+            Privacy Policy
+          </a>
+        </div>
       </div>
     </footer>
   );

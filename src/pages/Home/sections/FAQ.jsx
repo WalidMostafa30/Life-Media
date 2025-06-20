@@ -35,33 +35,6 @@ const faqData = [
   },
 ];
 
-const FAQItem = ({ question, answer, isOpen, onToggle }) => {
-  return (
-    <div className="bg-zinc-900 text-white p-5 rounded-xl mb-4 transition-all duration-300">
-      <div
-        className="flex justify-between items-start cursor-pointer"
-        onClick={onToggle}
-      >
-        <h4 className="text-base font-semibold">{question}</h4>
-        <div className="w-6 h-6 rounded-full bg-red-700 flex items-center justify-center mt-1">
-          {isOpen ? (
-            <FaMinus className="text-xs" />
-          ) : (
-            <FaPlus className="text-xs" />
-          )}
-        </div>
-      </div>
-      <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-40 mt-3 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <p className="text-sm text-gray-300">{answer}</p>
-      </div>
-    </div>
-  );
-};
-
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -73,15 +46,35 @@ const FAQ = () => {
     <section className="container sectionPadding">
       <SectionTitle title="Got a Question? We've Got Answers" />
 
-      <div className="mt-6">
+      <div className="space-y-4">
         {faqData.map((item, index) => (
-          <FAQItem
+          <div
             key={item.id}
-            question={item.question}
-            answer={item.answer}
-            isOpen={openIndex === index}
-            onToggle={() => toggleItem(index)}
-          />
+            className="bg-light-gray rounded-xl transition-all duration-300 px-4"
+          >
+            <div
+              className="flex justify-between items-center cursor-pointer py-4"
+              onClick={() => toggleItem(index)}
+            >
+              <h4 className="font-semibold">{item.question}</h4>
+              <div className="w-8 h-8 rounded-full bg-dark-red flex items-center justify-center">
+                {openIndex === index ? (
+                  <FaMinus className="text-lg" />
+                ) : (
+                  <FaPlus className="text-lg" />
+                )}
+              </div>
+            </div>
+            <div
+              className={`transition-all duration-400 ease-in-out overflow-hidden ${
+                openIndex === index
+                  ? "max-h-40 pb-4 opacity-100"
+                  : "max-h-0 opacity-0"
+              }`}
+            >
+              <p className="text-gray-300">{item.answer}</p>
+            </div>
+          </div>
         ))}
       </div>
     </section>

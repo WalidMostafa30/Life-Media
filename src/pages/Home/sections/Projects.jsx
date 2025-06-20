@@ -27,7 +27,7 @@ const Projects = () => {
     },
   ];
   return (
-    <section className="container sectionPadding">
+    <section id="Projects" className="container sectionPadding">
       <SectionTitle title="Where Vision Meets Execution" />
 
       <div className="space-y-4">
@@ -52,7 +52,7 @@ const Projects = () => {
                 </h3>
                 <p className="text-lg line-clamp-2">{project.description}</p>
               </div>
-              <button className="mainBtn">
+              <button className="mainBtn transparent">
                 See Project <GoArrowUpRight />
               </button>
             </div>

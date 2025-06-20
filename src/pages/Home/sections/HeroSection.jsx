@@ -3,6 +3,7 @@ import heroImg from "../../../assets/images/hero.jpg";
 const HeroSection = () => {
   return (
     <article
+      id="Home"
       style={{ backgroundImage: `url(${heroImg})` }}
       className="h-screen bg-cover bg-center bg-no-repeat"
     >
@@ -18,7 +19,7 @@ const HeroSection = () => {
           </p>
           <div className="flex gap-4">
             <button className="mainBtn">15-min Free consultation</button>
-            <button className="mainBtn">See Projects</button>
+            <button className="mainBtn transparent">See Projects</button>
           </div>
         </div>
       </div>

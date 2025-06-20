@@ -8,7 +8,7 @@ import servicesImg6 from "../../../assets/images/solutions-img6.jpg";
 
 const Services = () => {
   return (
-    <section className="container sectionPadding">
+    <section id="Services" className="container sectionPadding">
       <SectionTitle title={"Solutions We Offer"} />
 
       <div className="grid lg:grid-cols-2 gap-4">

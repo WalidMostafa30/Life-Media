@@ -25,7 +25,7 @@ const CompanyState = () => {
   ];
 
   return (
-    <section className="container sectionPadding">
+    <section id="Careers" className="container sectionPadding">
       <SectionTitle title="Proven Results, Trusted by Many" />
 
       <div className="hidden xl:flex flex-wrap gap-4 justify-center">

@@ -7,6 +7,7 @@ import Testimonials from "./sections/Testimonials";
 import SuccessStory from "./sections/SuccessStory/SuccessStory";
 import FAQ from "./sections/FAQ";
 import CTA from "../../components/common/CTA";
+import ContactUS from "./sections/ContactUS";
 
 const Home = () => {
   return (
@@ -33,6 +34,7 @@ const Home = () => {
       <Testimonials />
       <SuccessStory />
       <FAQ />
+      <ContactUS />
     </section>
   );
 };

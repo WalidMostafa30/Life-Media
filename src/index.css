@@ -2,7 +2,7 @@
 
 :root {
   --dark-red: #5a0211;
-  --light-red: #e95a5a;
+  --light-red: #e13d3d;
   --dark-gray: #1f1f1f;
   --light-gray: #1a1a1a;
 }
@@ -18,6 +18,11 @@ body {
   font-family: sans-serif;
   background-color: var(--dark-gray);
   color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
 }
 
 @utility container {
@@ -38,13 +43,32 @@ body {
   }
 
   .mainBtn {
-    @apply bg-dark-red font-bold text-sm lg:text-lg py-2 px-4 rounded-full cursor-pointer
-    flex items-center justify-center gap-2 shadow-[0px_0px_70px_0px] shadow-transparent 
-    hover:shadow-light-red hover:bg-red-900 hover:ring-3 ring-black/20
+    @apply bg-dark-red font-bold text-lg py-2 px-4 rounded-full cursor-pointer
+    flex items-center justify-center gap-2 shadow-[0px_0px_70px_0px] shadow-transparent ring-black/20
     transition-all duration-300;
 
     svg {
       @apply text-3xl;
+    }
+
+    &.light {
+      @apply bg-white text-dark-red;
+    }
+
+    &.transparent {
+      @apply bg-transparent text-white ring-white ring-2;
+    }
+
+    &:hover {
+      @apply shadow-light-red bg-red-900 ring-3;
+
+      &.light {
+        @apply text-white;
+      }
+
+      &.transparent {
+        @apply bg-red-900 text-white ring-red-900 shadow-transparent;
+      }
     }
   }
 
